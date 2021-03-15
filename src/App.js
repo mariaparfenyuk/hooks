@@ -1,26 +1,19 @@
-import React, {useState, useEffect, useRef} from 'react'
-
-// let renderCount = 1
+import React, {useState} from 'react'
 
 function App() {
-  // const [renderCount, setRenderCount] = useState(1)
-  const [value, setValue] = useState('initial')
-  const renderCount = useRef(1)
-  const inputRef = useRef(null)
+  const [colored, setColored] = useState(false)
+  const [count, setCount] = useState(1)
 
-  useEffect(() => {
-    renderCount.current++
-    console.log(inputRef.current.value);
-  })
-
-  // https://www.youtube.com/watch?v=9KJxaFHotqI 45:23
+  const styles = {
+    color: colored ? 'darkred' : 'black'
+  }
 
   return (
-    <div>
-      <h1>Количесто рендеров: {renderCount.current}</h1>
-      <input ref={inputRef} type="text" onChange={e => setValue(e.target.value)} value={value} />
-      <button className="btn btn-success" ></button>
-    </div>
+    <>
+      <h1 styles={styles}>Количество элементов:</h1>
+      <button className={'btn btn-success'} onClick={(prev => prev + 1)}>Добавить</button>
+      <button className={'btn btn-warning'} onClick={(prev => !prev)}>Изменить</button>
+    </>
   );
 }
 
